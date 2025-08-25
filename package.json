@@ -29,102 +29,102 @@
     "cross-platform"
   ],
   "type": "module",
-  "main": "./dist/universal/index.js",
-  "module": "./dist/universal/index.js",
-  "react-native": "./dist/universal/index.js",
-  "types": "./dist/universal/index.d.ts",
-  "typings": "./dist/universal/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "react-native": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
       "string": [
-        "./dist/universal/string/index.d.ts"
+        "./dist/string/index.d.ts"
       ],
       "array": [
-        "./dist/universal/array/index.d.ts"
+        "./dist/array/index.d.ts"
       ],
       "number": [
-        "./dist/universal/number/index.d.ts"
+        "./dist/number/index.d.ts"
       ],
       "sleep": [
-        "./dist/universal/sleep/index.d.ts"
+        "./dist/sleep/index.d.ts"
       ],
       "time": [
-        "./dist/universal/time/index.d.ts"
+        "./dist/time/index.d.ts"
       ],
       "utils": [
-        "./dist/universal/utils/index.d.ts"
+        "./dist/utils/index.d.ts"
       ],
       "types": [
-        "./dist/universal/types/index.d.ts"
+        "./dist/types/index.d.ts"
       ]
     }
   },
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/universal/index.d.ts",
-      "react-native": "./dist/universal/index.js",
-      "browser": "./dist/universal/index.js",
-      "module": "./dist/universal/index.js",
-      "import": "./dist/universal/index.js",
-      "default": "./dist/universal/index.js",
-      "require": "./dist/universal/index.cjs"
+      "types": "./dist/index.d.ts",
+      "react-native": "./dist/index.js",
+      "browser": "./dist/index.js",
+      "module": "./dist/index.js",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./string": {
-      "types": "./dist/universal/string/index.d.ts",
-      "react-native": "./dist/universal/string/index.js",
-      "module": "./dist/universal/string/index.js",
-      "import": "./dist/universal/string/index.js",
-      "default": "./dist/universal/string/index.js",
-      "require": "./dist/universal/string/index.cjs"
+      "types": "./dist/string/index.d.ts",
+      "react-native": "./dist/string/index.js",
+      "module": "./dist/string/index.js",
+      "import": "./dist/string/index.js",
+      "default": "./dist/string/index.js",
+      "require": "./dist/string/index.cjs"
     },
     "./array": {
-      "types": "./dist/universal/array/index.d.ts",
-      "react-native": "./dist/universal/array/index.js",
-      "module": "./dist/universal/array/index.js",
-      "import": "./dist/universal/array/index.js",
-      "default": "./dist/universal/array/index.js",
-      "require": "./dist/universal/array/index.cjs"
+      "types": "./dist/array/index.d.ts",
+      "react-native": "./dist/array/index.js",
+      "module": "./dist/array/index.js",
+      "import": "./dist/array/index.js",
+      "default": "./dist/array/index.js",
+      "require": "./dist/array/index.cjs"
     },
     "./number": {
-      "types": "./dist/universal/number/index.d.ts",
-      "react-native": "./dist/universal/number/index.js",
-      "module": "./dist/universal/number/index.js",
-      "import": "./dist/universal/number/index.js",
-      "default": "./dist/universal/number/index.js",
-      "require": "./dist/universal/number/index.cjs"
+      "types": "./dist/number/index.d.ts",
+      "react-native": "./dist/number/index.js",
+      "module": "./dist/number/index.js",
+      "import": "./dist/number/index.js",
+      "default": "./dist/number/index.js",
+      "require": "./dist/number/index.cjs"
     },
     "./sleep": {
-      "types": "./dist/universal/sleep/index.d.ts",
-      "react-native": "./dist/universal/sleep/index.js",
-      "module": "./dist/universal/sleep/index.js",
-      "import": "./dist/universal/sleep/index.js",
-      "default": "./dist/universal/sleep/index.js",
-      "require": "./dist/universal/sleep/index.cjs"
+      "types": "./dist/sleep/index.d.ts",
+      "react-native": "./dist/sleep/index.js",
+      "module": "./dist/sleep/index.js",
+      "import": "./dist/sleep/index.js",
+      "default": "./dist/sleep/index.js",
+      "require": "./dist/sleep/index.cjs"
     },
     "./time": {
-      "types": "./dist/universal/time/index.d.ts",
-      "react-native": "./dist/universal/time/index.js",
-      "module": "./dist/universal/time/index.js",
-      "import": "./dist/universal/time/index.js",
-      "default": "./dist/universal/time/index.js",
-      "require": "./dist/universal/time/index.cjs"
+      "types": "./dist/time/index.d.ts",
+      "react-native": "./dist/time/index.js",
+      "module": "./dist/time/index.js",
+      "import": "./dist/time/index.js",
+      "default": "./dist/time/index.js",
+      "require": "./dist/time/index.cjs"
     },
     "./utils": {
-      "types": "./dist/universal/utils/index.d.ts",
-      "react-native": "./dist/universal/utils/index.js",
-      "module": "./dist/universal/utils/index.js",
-      "import": "./dist/universal/utils/index.js",
-      "default": "./dist/universal/utils/index.js",
-      "require": "./dist/universal/utils/index.cjs"
+      "types": "./dist/utils/index.d.ts",
+      "react-native": "./dist/utils/index.js",
+      "module": "./dist/utils/index.js",
+      "import": "./dist/utils/index.js",
+      "default": "./dist/utils/index.js",
+      "require": "./dist/utils/index.cjs"
     },
     "./types": {
-      "types": "./dist/universal/types/index.d.ts",
-      "react-native": "./dist/universal/types/index.js",
-      "module": "./dist/universal/types/index.js",
-      "import": "./dist/universal/types/index.js",
-      "default": "./dist/universal/types/index.js",
-      "require": "./dist/universal/types/index.cjs"
+      "types": "./dist/types/index.d.ts",
+      "react-native": "./dist/types/index.js",
+      "module": "./dist/types/index.js",
+      "import": "./dist/types/index.js",
+      "default": "./dist/types/index.js",
+      "require": "./dist/types/index.cjs"
     }
   },
   "files": [
