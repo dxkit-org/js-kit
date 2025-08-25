@@ -1,7 +1,7 @@
 {
   "name": "@dxkit-org/js-kit",
   "version": "1.0.0",
-  "description": "Modern TypeScript utility library with tree-shaking support - Array, String, Number, Network, Sleep, and JWT utilities for JavaScript and TypeScript projects",
+  "description": "Modern TypeScript utility library with tree-shaking support - Array, String, Number, Sleep, and Time utilities for JavaScript and TypeScript projects",
   "keywords": [
     "typescript",
     "javascript",
@@ -12,10 +12,8 @@
     "array-utils",
     "string-utils",
     "number-utils",
-    "network-utils",
     "sleep",
-    "jwt",
-    "json-web-token",
+    "time-utils",
     "modern-js",
     "typescript-library",
     "js-kit",
@@ -23,15 +21,10 @@
     "chunking",
     "capitalize",
     "clamp",
-    "port-checker",
     "async-sleep",
     "promise-utils",
-    "node",
     "browser",
     "universal",
-    "react",
-    "zustand",
-    "state-management",
     "environment-detection",
     "cross-platform"
   ],
@@ -43,18 +36,6 @@
   "typings": "./dist/universal/index.d.ts",
   "typesVersions": {
     "*": {
-      "node": [
-        "./dist/node/index.d.ts"
-      ],
-      "browser": [
-        "./dist/browser/index.d.ts"
-      ],
-      "react": [
-        "./dist/react/index.d.ts"
-      ],
-      "react-native": [
-        "./dist/react-native/index.d.ts"
-      ],
       "string": [
         "./dist/universal/string/index.d.ts"
       ],
@@ -64,14 +45,8 @@
       "number": [
         "./dist/universal/number/index.d.ts"
       ],
-      "network": [
-        "./dist/node/network/index.d.ts"
-      ],
       "sleep": [
         "./dist/universal/sleep/index.d.ts"
-      ],
-      "jwt": [
-        "./dist/node/jwt/index.d.ts"
       ],
       "time": [
         "./dist/universal/time/index.d.ts"
@@ -81,9 +56,6 @@
       ],
       "types": [
         "./dist/universal/types/index.d.ts"
-      ],
-      "react/zustand": [
-        "./dist/react/zustand/index.d.ts"
       ]
     }
   },
@@ -97,40 +69,6 @@
       "import": "./dist/universal/index.js",
       "default": "./dist/universal/index.js",
       "require": "./dist/universal/index.cjs"
-    },
-    "./node": {
-      "types": "./dist/node/index.d.ts",
-      "node": "./dist/node/index.js",
-      "react-native": "./dist/node/index.js",
-      "module": "./dist/node/index.js",
-      "import": "./dist/node/index.js",
-      "default": "./dist/node/index.js",
-      "require": "./dist/node/index.cjs"
-    },
-    "./browser": {
-      "types": "./dist/browser/index.d.ts",
-      "browser": "./dist/browser/index.js",
-      "react-native": "./dist/browser/index.js",
-      "module": "./dist/browser/index.js",
-      "import": "./dist/browser/index.js",
-      "default": "./dist/browser/index.js",
-      "require": "./dist/browser/index.cjs"
-    },
-    "./react": {
-      "types": "./dist/react/index.d.ts",
-      "react-native": "./dist/react/index.js",
-      "module": "./dist/react/index.js",
-      "import": "./dist/react/index.js",
-      "default": "./dist/react/index.js",
-      "require": "./dist/react/index.cjs"
-    },
-    "./react-native": {
-      "types": "./dist/react-native/index.d.ts",
-      "react-native": "./dist/react-native/index.js",
-      "module": "./dist/react-native/index.js",
-      "import": "./dist/react-native/index.js",
-      "default": "./dist/react-native/index.js",
-      "require": "./dist/react-native/index.cjs"
     },
     "./string": {
       "types": "./dist/universal/string/index.d.ts",
@@ -156,15 +94,6 @@
       "default": "./dist/universal/number/index.js",
       "require": "./dist/universal/number/index.cjs"
     },
-    "./network": {
-      "types": "./dist/node/network/index.d.ts",
-      "node": "./dist/node/network/index.js",
-      "react-native": "./dist/node/network/index.js",
-      "module": "./dist/node/network/index.js",
-      "import": "./dist/node/network/index.js",
-      "default": "./dist/node/network/index.js",
-      "require": "./dist/node/network/index.cjs"
-    },
     "./sleep": {
       "types": "./dist/universal/sleep/index.d.ts",
       "react-native": "./dist/universal/sleep/index.js",
@@ -172,15 +101,6 @@
       "import": "./dist/universal/sleep/index.js",
       "default": "./dist/universal/sleep/index.js",
       "require": "./dist/universal/sleep/index.cjs"
-    },
-    "./jwt": {
-      "types": "./dist/node/jwt/index.d.ts",
-      "node": "./dist/node/jwt/index.js",
-      "react-native": "./dist/node/jwt/index.js",
-      "module": "./dist/node/jwt/index.js",
-      "import": "./dist/node/jwt/index.js",
-      "default": "./dist/node/jwt/index.js",
-      "require": "./dist/node/jwt/index.cjs"
     },
     "./time": {
       "types": "./dist/universal/time/index.d.ts",
@@ -205,14 +125,6 @@
       "import": "./dist/universal/types/index.js",
       "default": "./dist/universal/types/index.js",
       "require": "./dist/universal/types/index.cjs"
-    },
-    "./react/zustand": {
-      "types": "./dist/react/zustand/index.d.ts",
-      "react-native": "./dist/react/zustand/index.js",
-      "module": "./dist/react/zustand/index.js",
-      "import": "./dist/react/zustand/index.js",
-      "default": "./dist/react/zustand/index.js",
-      "require": "./dist/react/zustand/index.cjs"
     }
   },
   "files": [
@@ -249,13 +161,7 @@
     "unlink": "npm unlink -g advanced-js-kit"
   },
   "devDependencies": {
-    "@types/jsonwebtoken": "^9.0.10",
     "tsup": "^8.5.0",
     "typescript": "^5.4.0"
-  },
-  "dependencies": {
-    "is-port-reachable": "^4.0.0",
-    "jsonwebtoken": "^9.0.2",
-    "zustand": "^5.0.6"
   }
 }
