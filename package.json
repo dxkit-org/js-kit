@@ -161,6 +161,7 @@
     "unlink": "npm unlink -g advanced-js-kit"
   },
   "devDependencies": {
+    "@types/node": "^24.3.0",
     "tsup": "^8.5.0",
     "typescript": "^5.4.0"
   }
