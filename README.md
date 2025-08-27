@@ -58,6 +58,11 @@ import {
   clamp,
   sleep,
   convertToSeconds,
+  randomStringWithFixedLength,
+  truncateText,
+  convertToInt,
+  getUnixTimestamp,
+  isNodeEnvironment,
 } from "@dxkit-org/js-kit"
 
 // Array utilities
@@ -68,9 +73,18 @@ const chunkedArray = chunk([1, 2, 3, 4, 5], 2)
 const capitalizedString = capitalize("hello world")
 // Result: "Hello world"
 
+const randomId = randomStringWithFixedLength(8)
+// Result: "a7b9c2d1" (example)
+
+const truncated = truncateText({ text: "This is a long text", maxLength: 10 })
+// Result: "This is a..."
+
 // Number utilities
 const clampedNumber = clamp(15, 0, 10)
 // Result: 10
+
+const safeInt = convertToInt("123.45")
+// Result: 123
 
 // Sleep utilities
 await sleep({ seconds: 2, milliseconds: 500 }) // Sleep for 2.5 seconds
@@ -78,6 +92,13 @@ await sleep({ seconds: 2, milliseconds: 500 }) // Sleep for 2.5 seconds
 // Time utilities
 const seconds = convertToSeconds({ minutes: 5, seconds: 30 })
 // Result: 330 (seconds)
+
+const timestamp = getUnixTimestamp()
+// Result: current timestamp in seconds
+
+// Environment utilities
+const isNode = isNodeEnvironment()
+// Result: true if running in Node.js
 ```
 
 ### Tree-shaking Support
@@ -86,28 +107,36 @@ You can also import individual functions for optimal tree-shaking:
 
 ```typescript
 // Universal utilities - individual imports
-import { chunk } from "@dxkit-org/js-kit/array/chunk"
-import { capitalize } from "@dxkit-org/js-kit/string/capitalize"
-import { clamp } from "@dxkit-org/js-kit/number/clamp"
-import { sleep } from "@dxkit-org/js-kit/sleep/sleep"
-import { convertToSeconds } from "@dxkit-org/js-kit/time/time"
+import { chunk } from "@dxkit-org/js-kit/array"
+import { capitalize, truncateText } from "@dxkit-org/js-kit/string"
+import { clamp, convertToInt } from "@dxkit-org/js-kit/number"
+import { sleep, sleepMs } from "@dxkit-org/js-kit/sleep"
+import { convertToSeconds, getUnixTimestamp } from "@dxkit-org/js-kit/time"
+import { isNodeEnvironment, getEnvironment } from "@dxkit-org/js-kit/utils"
 
 // Universal bundle (recommended)
-import { chunk, capitalize, clamp } from "@dxkit-org/js-kit"
+import {
+  chunk,
+  capitalize,
+  clamp,
+  sleep,
+  convertToSeconds,
+} from "@dxkit-org/js-kit"
 ```
 
 ## 📋 Available Modules
 
 ### ✅ Universal Modules (Node.js + Browser + Web Workers)
 
-| Module              | Functions                                                     | Description                                  |
-| ------------------- | ------------------------------------------------------------- | -------------------------------------------- |
-| `array/chunk`       | `chunk`                                                       | Split arrays into chunks of specified size   |
-| `string/capitalize` | `capitalize`, `capitalizeWords`                               | String capitalization utilities              |
-| `number/clamp`      | `clamp`, `inRange`                                            | Number range utilities                       |
-| `sleep/sleep`       | `sleep`                                                       | Promise-based sleep with multiple time units |
-| `time/time`         | `convertToSeconds`                                            | Time conversion utilities                    |
-| `utils/environment` | `isNodeEnvironment`, `isBrowserEnvironment`, `getEnvironment` | Environment detection                        |
+| Module   | Functions                                                                                                                                    | Description                                    |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| `array`  | `chunk`                                                                                                                                      | Split arrays into chunks of specified size     |
+| `string` | `capitalize`, `capitalizeWords`, `convertCamelToNormalCapitalized`, `randomStringWithFixedLength`, `truncateText`                            | String manipulation and formatting utilities   |
+| `number` | `clamp`, `inRange`, `convertToInt`, `convertToTwoDecimalInt`, `randomNumberWithFixedLength`                                                  | Number utilities including range operations    |
+| `sleep`  | `sleep`, `sleepMs`, `sleepSeconds`, `sleepMinutes`, `sleepUntil`                                                                             | Promise-based sleep with flexible time options |
+| `time`   | `convertToSeconds`, `getUnixTimestamp`, `getUnixTimestampMs`                                                                                 | Time conversion and timestamp utilities        |
+| `utils`  | `isNodeEnvironment`, `isBrowserEnvironment`, `isWebWorkerEnvironment`, `getEnvironment`, `assertNodeEnvironment`, `assertBrowserEnvironment` | Environment detection and assertions           |
+| `types`  | `Prettify`                                                                                                                                   | Utility types for TypeScript development       |
 
 ## TypeScript Configuration
 
@@ -130,7 +159,7 @@ For optimal compatibility with this package, ensure your `tsconfig.json` uses mo
 If you encounter module resolution errors like:
 
 ```
-Cannot find module 'advanced-js-kit/string/capitalize' or its corresponding type declarations
+Cannot find module '@dxkit-org/js-kit/string/capitalize' or its corresponding type declarations
 ```
 
 Try these solutions:
@@ -140,7 +169,7 @@ Try these solutions:
 3. **Copy the example configuration** from `example-tsconfig-for-consumers.json` in this package
 4. **As a workaround**, you can import directly from the dist folder:
    ```typescript
-   import { capitalize } from "advanced-js-kit/dist/string/capitalize.js"
+   import { capitalize } from "@dxkit-org/js-kit/dist/string/capitalize.js"
    ```
 
 ### IDE Support
@@ -159,10 +188,11 @@ This package provides excellent IDE support with:
 For comprehensive documentation with examples, advanced usage patterns, and best practices, see the individual package documentation:
 
 - **[🔢 Array Utilities](./src/array/array.md)** - Array manipulation and chunking utilities
-- **[🔢 Number Utilities](./src/number/number.md)** - Number clamping and range validation
+- **[🔢 Number Utilities](./src/number/number.md)** - Number clamping, conversion, and range validation
 - **[⏰ Sleep Utilities](./src/sleep/sleep.md)** - Advanced sleep and timing functions
 - **[📝 String Utilities](./src/string/string.md)** - String manipulation and formatting
 - **[⏰ Time Utilities](./src/time/time.md)** - Time conversion and duration utilities
+- **[🌐 Environment Utilities](./src/utils/utils.md)** - Environment detection and cross-platform utilities
 
 ### Quick Reference
 
@@ -174,11 +204,17 @@ For comprehensive documentation with examples, advanced usage patterns, and best
 
 - `capitalize(str: string): string` - Capitalizes the first letter of a string
 - `capitalizeWords(str: string): string` - Capitalizes the first letter of each word
+- `convertCamelToNormalCapitalized(str: string): string` - Converts camelCase to Normal Capitalized format
+- `randomStringWithFixedLength(length: number): string` - Generates a random string with fixed length
+- `truncateText(options: TruncateTextOptions): string` - Truncates text with customizable options
 
 #### Number Utilities
 
 - `clamp(number: number, lower: number, upper: number): number` - Clamps a number within bounds
 - `inRange(number: number, lower: number, upper: number): boolean` - Checks if number is in range
+- `convertToInt(data: any): number` - Safely converts any value to integer
+- `convertToTwoDecimalInt(data: any): number` - Converts to number with 2 decimal places
+- `randomNumberWithFixedLength(length: number): number` - Generates random number with fixed length
 
 #### Sleep Utilities
 
@@ -187,6 +223,25 @@ For comprehensive documentation with examples, advanced usage patterns, and best
 - `sleepSeconds(seconds: number): Promise<void>` - Sleep for seconds
 - `sleepMinutes(minutes: number): Promise<void>` - Sleep for minutes
 - `sleepUntil(unixTimestamp: number): Promise<void>` - Sleep until timestamp
+
+#### Time Utilities
+
+- `convertToSeconds(options): number` - Converts time units to seconds
+- `getUnixTimestamp(): number` - Gets current Unix timestamp in seconds
+- `getUnixTimestampMs(): number` - Gets current Unix timestamp in milliseconds
+
+#### Environment Utilities
+
+- `isNodeEnvironment(): boolean` - Checks if running in Node.js
+- `isBrowserEnvironment(): boolean` - Checks if running in browser
+- `isWebWorkerEnvironment(): boolean` - Checks if running in web worker
+- `getEnvironment(): string` - Gets current environment type
+- `assertNodeEnvironment(): void` - Asserts Node.js environment
+- `assertBrowserEnvironment(): void` - Asserts browser environment
+
+#### Type Utilities
+
+- `Prettify<T>` - Utility type for better TypeScript intellisense
 
 ## Development
 

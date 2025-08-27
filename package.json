@@ -133,11 +133,11 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/AdarshHatkar/advanced-js-kit.git"
+    "url": "https://github.com/dxkit-org/js-kit.git"
   },
-  "homepage": "https://github.com/AdarshHatkar/advanced-js-kit#readme",
+  "homepage": "https://github.com/dxkit-org/js-kit#readme",
   "bugs": {
-    "url": "https://github.com/AdarshHatkar/advanced-js-kit/issues"
+    "url": "https://github.com/dxkit-org/js-kit/issues"
   },
   "author": {
     "name": "Adarsh Hatkar",
@@ -158,7 +158,7 @@
     "release:patch": "npm version patch",
     "postversion": "git push && git push --tags && npm publish",
     "link": "npm run build && npm link",
-    "unlink": "npm unlink -g advanced-js-kit"
+    "unlink": "npm unlink -g @dxkit-org/js-kit"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",
