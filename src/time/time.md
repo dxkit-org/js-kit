@@ -31,11 +31,13 @@ import {
   convertToSeconds,
   getUnixTimestamp,
   getUnixTimestampMs,
+  getFullYear,
 } from "@dxkit-org/js-kit/time"
 
 const totalSeconds = convertToSeconds({ hours: 2, minutes: 30 }) // 9000 seconds
 const currentTimestamp = getUnixTimestamp() // Current time in seconds
 const currentTimestampMs = getUnixTimestampMs() // Current time in milliseconds
+const currentYear = getFullYear() // Current year (e.g., 2025)
 ```
 
 #### 2. Package Import
@@ -45,6 +47,7 @@ import {
   convertToSeconds,
   getUnixTimestamp,
   getUnixTimestampMs,
+  getFullYear,
 } from "@dxkit-org/js-kit"
 
 const totalSeconds = convertToSeconds({ hours: 2, minutes: 30 }) // 9000 seconds
@@ -57,6 +60,7 @@ import {
   convertToSeconds,
   getUnixTimestamp,
   getUnixTimestampMs,
+  getFullYear,
 } from "@dxkit-org/js-kit/time"
 
 // Single unit conversions
@@ -72,6 +76,10 @@ const zero = convertToSeconds() // 0 seconds
 // Get current timestamps
 const currentTimestamp = getUnixTimestamp() // Current time in seconds
 const currentTimestampMs = getUnixTimestampMs() // Current time in milliseconds
+
+// Get current year
+const currentYear = getFullYear() // Current year (e.g., 2025)
+const specificYear = getFullYear(new Date('2023-05-15')) // 2023
 
 // Use timestamps for comparisons and calculations
 const timeInFuture = currentTimestamp + convertToSeconds({ hours: 1 }) // 1 hour from now
@@ -413,6 +421,35 @@ const startTime = getUnixTimestampMs()
 // ... perform some operation
 const endTime = getUnixTimestampMs()
 const durationMs = endTime - startTime
+```
+
+### `getFullYear(date?: Date): number`
+
+Gets the full year from a Date object or the current date.
+
+**Parameters:**
+- `date` (Date, optional): Date object to extract year from. If not provided, uses current date.
+
+**Returns:** `number` - The full year (4 digits)
+
+**Examples:**
+
+```typescript
+// Get current year
+const currentYear = getFullYear()
+// Returns: 2025 (example - current year)
+
+// Get year from specific date
+const specificYear = getFullYear(new Date('2023-05-15'))
+// Returns: 2023
+
+// Use with date calculations
+const birthYear = getFullYear(new Date('1990-03-20'))
+const age = getFullYear() - birthYear
+
+// Parse year from date string
+const eventDate = new Date('December 31, 2024')
+const eventYear = getFullYear(eventDate) // 2024
 ```
 
 ## Error Handling
